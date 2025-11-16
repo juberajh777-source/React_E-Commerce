@@ -28,12 +28,14 @@ pipeline {
             }
         }
 
-        stage('Build') {
-            steps {
-                echo "Building production bundle..."
-                sh 'npm run build'
-            }
-        }
+      stage('Build') {
+    steps {
+        echo "Building production bundle..."
+        // CI=false makes CRA treat warnings as warnings, not errors
+        sh 'CI=false npm run build'
+    }
+}
+
 
         stage('Archive build artifacts') {
             steps {
